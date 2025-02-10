@@ -1,6 +1,8 @@
 import pandas as pd
-import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
+import numpy as np
+from itertools import permutations
 
 
 def load_and_preprocess_data(file_path):
@@ -25,10 +27,6 @@ def create_label_mapping(true_labels, cluster_labels):
     """
     Create mapping between cluster labels (numbers) and true labels (strings)
     """
-    from sklearn.metrics import accuracy_score
-    import numpy as np
-    from itertools import permutations
-
     unique_true = np.unique(true_labels)
     unique_cluster = np.unique(cluster_labels)
 
