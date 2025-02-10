@@ -36,7 +36,7 @@
 
 <div align="center">
     <a href="https://github.com/AJSahagun/" target="_blank">
-        <img src="https://www.creativefabrica.com/wp-content/uploads/2021/07/02/Cluster-Analysis-Filled-Line-Icon-Graphics-14152745-1.jpg" 
+        <img src="./img/logo.jpg" 
         alt="Logo" height="290">
     </a>
 </div>
@@ -130,7 +130,7 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 -->
 
 - [x] Create Project Repository
-- [ ] Choose a dataset
+- [x] Choose a dataset
 - [ ] Start ML Model development
 - [ ] Evaluate the Model's accuracy
 - [ ] Implement visualization
