@@ -1,5 +1,5 @@
 from src.preprocessing import load_and_preprocess_data
-from src.kmeans_model import IrisKMeans
+from src.custom_kmeans import IrisKMeans
 from src.visualization import plot_elbow_method, plot_clusters, plot_confusion_matrix
 import numpy as np
 

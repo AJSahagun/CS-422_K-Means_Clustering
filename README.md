@@ -131,8 +131,8 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 
 - [x] Create Project Repository
 - [x] Choose a dataset
-- [ ] Start ML Model development
-- [ ] Evaluate the Model's accuracy
+- [x] Start ML Model development
+- [x] Evaluate the Model's accuracy
 - [ ] Implement visualization
 
 
