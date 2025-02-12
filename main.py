@@ -1,12 +1,12 @@
-from preprocessing import load_and_preprocess_data
-from kmeans_model import IrisKMeans
-from visualization import plot_elbow_method, plot_clusters, plot_confusion_matrix
+from src.preprocessing import load_and_preprocess_data
+from src.kmeans_model import IrisKMeans
+from src.visualization import plot_elbow_method, plot_clusters, plot_confusion_matrix
 import numpy as np
 
 
 def main():
     # Load and preprocess data
-    X, y, scaler = load_and_preprocess_data('ml_group-4_iris_dataset.csv')
+    X, y, scaler = load_and_preprocess_data('data/ml_group-4_iris_dataset.csv')
 
     # Find optimal K using elbow method
     k_values = range(1, 10)
