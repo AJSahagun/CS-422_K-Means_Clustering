@@ -77,12 +77,24 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
     git clone https://github.com/AJSahagun/CS-422_K-Means_Clustering.git
 ```
 
+- Set up your environment
+```bash
+    pip install -r requirements.txt
+```
+
+- Run the main script:
+```bash
+    python main.py
+```
+
 ## Demo<!-- Required -->
 <!-- 
 * You can add a demo here GH supports images/ GIFs/videos 
 * 
 * It's recommended to use GIFs as they are more dynamic
 -->
+
+<img src="./img/output.png" alt="output" height="290">
 
 
 <div align="center">
@@ -131,9 +143,9 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 
 - [x] Create Project Repository
 - [x] Choose a dataset
-- [ ] Start ML Model development
-- [ ] Evaluate the Model's accuracy
-- [ ] Implement visualization
+- [x] Start ML Model development
+- [x] Evaluate the Model's accuracy
+- [x] Implement visualization
 
 
 <p align="right"><a href="#how-to-use-this-project">back to top ⬆️</a></p>
@@ -166,7 +178,19 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 * 
 * Feel free to share your inspiration sources, Stackoverflow questions, github repos, tools etc.
 -->
-
+### Group Members
+#### Data Gathering
+- CARL JUSTIN ULARTE
+- RONALDO PESIGAN
+#### Model Development
+- MICHAEL JOHN RHEY MASAGNAY
+- AARON JOHN SAHAGUN
+- ROSELER TANEDO JR
+#### Documentation
+- JOHN PAUL MEDRANO
+- JOHN HAROLD PRIETO
+- DESXZOR NAVARRO
+- CAREN TOLENTINO
 
 
 <!-- - Use this html element to create a back to top button. -->
