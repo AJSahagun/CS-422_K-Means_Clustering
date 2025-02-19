@@ -40,15 +40,17 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     if scaler is not None:
         cluster_centers = scaler.inverse_transform(cluster_centers)
     
-    plt.scatter(df['PetalLengthCm'], df['PetalWidthCm'], 
+    plt.scatter(df['SepalLengthCm'], df['SepalWidthCm'], 
                c=cluster_labels, cmap='viridis', 
                s=100, alpha=0.6)
+    
     plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], 
                s=300, c='red', marker='X', linewidth=2, 
                label='Centroids')
+    
     plt.title('K-means Clustering Results', fontsize=14, pad=15)
-    plt.xlabel('Petal Length (cm)', fontsize=12)
-    plt.ylabel('Petal Width (cm)', fontsize=12)
+    plt.xlabel('Sepal Length (cm)', fontsize=12)
+    plt.ylabel('Sepal Width (cm)', fontsize=12)
     plt.legend(fontsize=10)
     
     # 3. True Labels Visualization
@@ -58,8 +60,8 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     
     for species, color in zip(unique_species, colors):
         mask = true_labels == species
-        plt.scatter(df.loc[mask, 'PetalLengthCm'], 
-                   df.loc[mask, 'PetalWidthCm'],
+        plt.scatter(df.loc[mask, 'SepalLengthCm'], 
+                   df.loc[mask, 'SepalWidthCm'],
                    label=species, color=color, s=100, alpha=0.6)
     
     plt.title('Actual Species Distribution', fontsize=14, pad=15)
