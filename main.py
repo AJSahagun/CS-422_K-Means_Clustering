@@ -1,6 +1,6 @@
 from src.preprocessing import load_and_preprocess_data
 from src.kmeans_model import IrisKMeans
-from src.visualization import plot_clustering_analysis, calculate_wcss
+from src.visualization import plot_clustering_analysis_3d, calculate_wcss
 import pandas as pd
 
 def main():
@@ -10,7 +10,7 @@ def main():
 
     # Calculate WCSS values for elbow method
     wcss_values = calculate_wcss(X, IrisKMeans, max_k=9)
-
+ 
     # Train final model with optimal K (3 for Iris dataset)
     optimal_k = 3
     final_model = IrisKMeans(n_clusters=optimal_k)
@@ -21,7 +21,7 @@ def main():
     metrics = final_model.evaluate(X, y)
 
     # Create visualization
-    plot_clustering_analysis(
+    plot_clustering_analysis_3d(
         X_scaled=X,
         df=df,
         cluster_labels=labels,
