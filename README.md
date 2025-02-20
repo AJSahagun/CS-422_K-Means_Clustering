@@ -61,7 +61,11 @@
 -->
 
 
-This project implements a K-Means Clustering Machine Learning Model to classify data into distinct clusters based on their inherent patterns. The model is designed to identify meaningful groupings within the dataset without prior labeling, making it suitable for unsupervised learning tasks.
+This project demonstrates K-means clustering on the Iris dataset using petal length and width features. The implementation includes data preprocessing, model training, evaluation, and visualization of results. Key components:
+
+- **Data Preprocessing**: Scales features and maps cluster labels to true species.
+- **Model Training**: Uses the elbow method to determine optimal clusters (fixed at k=3 for Iris).
+- **Visualization**: Generates plots for the elbow method, clustering results, true species distribution, and a confusion matrix.
 
 
 ## How to use this project<!-- Required -->
@@ -96,6 +100,14 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 
 <img src="./img/output.png" alt="output" height="290">
 
+### Output
+
+- Printed evaluation metrics (precision, recall, F1-score).
+- A 2x2 visualization grid:
+1. Elbow Method Plot 
+2. K-means Clustering Results 
+3. True Species Distribution 
+4. Confusion Matrix
 
 <div align="center">
 
@@ -156,8 +168,75 @@ This project implements a K-Means Clustering Machine Learning Model to classify 
 * 
 * 
 -->
+### Project Structure
+```
+CS-422_K-Means_Clustering/
+│
+├── data/
+│   └── ml_group-4_iris_dataset.csv
+│
+├── src/
+│   ├── custom_kmeans.py       # KMeans model implementation
+│   ├── preprocessing.py       # Data preprocessing utilities
+│   ├── kmeans_model.py        # KMeans model from Sci-kit
+│   └── visualization.py       # Visualization utilities
+│
+├── notebook/
+│   └── kmeans.ipynb           # Jupyter notebook for the model
+│
+├── img/
+│   ├── logo.jpg               # Picture logo used in Read me
+│   └── output.png             # Demo picture used in Read me
+│
+├── requirements.txt           # Project dependencies
+├── README.md                  # Project documentation
+└── main.py                    # Main script to run the project
+```
 
+### Module Documentation
 
+#### `main.py`
+**Entry point for the application:**
+1. Loads and preprocesses data 
+2. Calculates WCSS for elbow method 
+3. Trains model with optimal k=3 
+4. Evaluates performance 
+5. Generates composite visualization
+
+#### `preprocessing.py`
+**Data handling:**
+- load_and_preprocess_data(file_path)
+- Returns: (X_scaled, y, scaler)
+  - Loads data 
+  - Extracts petal features 
+  - Scales features using StandardScaler
+- create_label_mapping(true_labels, cluster_labels)
+- Returns: Best label mapping dictionary 
+  - Finds optimal cluster-to-species mapping using permutation accuracy tests
+
+#### `custom_kmeans.py`
+**Custom clustering implementation:**
+- KMeans class: (Core algorithm with)
+  - Random centroid initialization 
+  - Iterative centroid updating 
+  - Convergence checking 
+  - WCSS calculation
+- IrisKMeans wrapper class: (Methods)
+  - fit(): Train model 
+  - predict(): Get cluster labels 
+  - evaluate(): Returns metrics dictionary with:
+    - Confusion matrix 
+    - Precision/Recall/F1-score
+
+#### `visualization.py`
+**Plotting functions:**
+- plot_clustering_analysis(): (Generates 4-panel figure showing)
+  1. Elbow method curve 
+  2. Cluster assignments with centroids
+  3. True species distribution
+  4. Confusion matrix
+- calculate_wcss():
+  - Computes WCSS values for k=1 to max_k
 
 
 ## Contributors<!-- Required -->
