@@ -13,7 +13,7 @@ def load_and_preprocess_data(file_path):
     df = pd.read_csv(file_path)
 
     # Extract features and target
-    X = df[['SepalLengthCm', 'SepalWidthCm']].values
+    X = df[['PetalLengthCm', 'PetalWidthCm']].values
     y = df['Species'].values
 
     # Scale the features
