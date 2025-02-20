@@ -26,7 +26,7 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     plt.figure(figsize=(12, 8))
     
     # 1. Elbow Method Plot
-    plt.subplot(2, 2, 1)
+    plt.subplot(2, 2, 2)
     plt.plot(range(1, len(wcss_values)+1), wcss_values, marker='o', linewidth=2, markersize=8)
     plt.title('Elbow Method', fontsize=14, pad=15)
     plt.xlabel('Number of Clusters (K)', fontsize=12)
@@ -34,7 +34,7 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     plt.grid(True, linestyle='--', alpha=0.7)
     
     # 2. Cluster Visualization
-    plt.subplot(2, 2, 2)
+    plt.subplot(2, 2, 3)
     
     # Transform centroids back to original scale if scaler is provided
     if scaler is not None:
@@ -54,7 +54,7 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     plt.legend(fontsize=10)
     
     # 3. True Labels Visualization
-    plt.subplot(2, 2, 3)
+    plt.subplot(2, 2, 1)
     unique_species = np.unique(true_labels)
     colors = plt.cm.viridis(np.linspace(0, 1, len(unique_species)))
     
