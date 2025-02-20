@@ -1,6 +1,6 @@
 from src.preprocessing import load_and_preprocess_data
 from src.kmeans_model import IrisKMeans
-from src.visualization import plot_clustering_analysis_3d, calculate_wcss
+from src.visualization import plot_clustering_analysis, calculate_wcss
 import pandas as pd
 
 def main():
@@ -21,7 +21,7 @@ def main():
     metrics = final_model.evaluate(X, y)
 
     # Create visualization
-    plot_clustering_analysis_3d(
+    plot_clustering_analysis(
         X_scaled=X,
         df=df,
         cluster_labels=labels,
