@@ -103,3 +103,42 @@ def calculate_wcss(X_scaled, kmeans_class, max_k=10):
         kmeans.fit(X_scaled)
         wcss.append(kmeans.get_wcss())
     return wcss
+
+
+def find_elbow_point(wcss_values):
+    """
+    Parameters:
+        wcss_values: A list of WCSS values corresponding to different K values.
+
+    Returns:
+        The estimated optimal K value (index + 1), or None if no clear elbow is found.
+    """
+
+    if len(wcss_values) < 3:
+        return len(wcss_values)
+
+    diffs = []
+    for i in range(1, len(wcss_values)):
+        diffs.append(wcss_values[i - 1] - wcss_values[i])
+
+    second_diffs = []
+    for i in range(1, len(diffs)):
+        second_diffs.append(diffs[i - 1] - diffs[i])
+
+    # Find the point where the second derivative changes sign significantly.
+    # This indicates a change in the rate of decrease.
+
+    max_second_diff_index = 0
+    max_second_diff_value = 0
+
+    for i, value in enumerate(second_diffs):
+        if i == 0:
+            max_second_diff_value = abs(value)
+        elif abs(value) > max_second_diff_value:
+            max_second_diff_value = abs(value)
+            max_second_diff_index = i
+
+    elbow_index = max_second_diff_index +1 #add one to account for the first set of differences.
+    optimal_k = elbow_index + 1 #add one to account for the fact that index 0 is K=1.
+
+    return optimal_k
