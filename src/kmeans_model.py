@@ -36,7 +36,7 @@ class IrisKMeans:
         cluster_labels = self.predict(X)
 
         # Create mapping between cluster labels and true labels
-        from src.preprocessing import create_label_mapping
+        from src.ver_2.preprocessing import create_label_mapping
         mapping = create_label_mapping(true_labels, cluster_labels)
 
         # Map cluster labels (numbers) to predicted labels
