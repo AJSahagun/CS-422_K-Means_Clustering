@@ -33,9 +33,8 @@ def main():
     )
 
     # Print metrics
-    print("\nModel Evaluation Metrics:")
+    print("\nModel Evaluation Metrics")
     print(f"Optimal K: {optimal_k}")
-    print(f"Confusion Matrix: {metrics['confusion_matrix']}")
     print(f"Precision: {metrics['precision']:.3f}")
     print(f"Recall: {metrics['recall']:.3f}")
     print(f"F1-Score: {metrics['f1_score']:.3f}")

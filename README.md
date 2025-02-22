@@ -86,6 +86,13 @@ This project demonstrates K-means clustering on the Iris dataset using petal len
     pip install -r requirements.txt
 ```
 
+- Change the import path on `main.py` based on what version you will run
+```python
+    from src.ver_1.preprocessing import load_and_preprocess_data
+    . . .
+    from src.ver_1.visualization import plot_clustering_analysis, calculate_wcss, find_elbow_point
+```
+
 - Run the main script:
 ```bash
     python main.py
@@ -101,14 +108,44 @@ This project demonstrates K-means clustering on the Iris dataset using petal len
 ### Version 1 - Features: Petal Length & Width (2D)
 <img src="./img/visualization1.png" alt="Visualization for version 1" height="290">
 
+```commandline
+Model Evaluation Metrics
+Optimal K: 2
+Precision: 0.503
+Recall: 0.670
+F1-Score: 0.559
+```
+
+### Version 2 - Features: Sepal Length & Width (2D)
+<img src="./img/visualization2.png" alt="Visualization for version 2" height="290">
+
+```commandline
+Model Evaluation Metrics
+Optimal K: 2
+Precision: 0.503
+Recall: 0.670
+F1-Score: 0.559
+```
+
+### Version 3 - Features: Petal Length & Width, Sepal Width (3D)
+<img src="./img/visualization3.png" alt="Visualization for version 3" height="290">
+
+```commandline
+Model Evaluation Metrics
+Optimal K: 2
+Precision: 0.503
+Recall: 0.670
+F1-Score: 0.559
+```
+
 ### Output
 
-- Printed evaluation metrics (precision, recall, F1-score).
 - A 2x2 visualization grid:
-1. Elbow Method Plot 
-2. K-means Clustering Results 
-3. True Species Distribution 
-4. Confusion Matrix
+  1. Elbow Method Plot 
+  2. K-means Clustering Results 
+  3. True Species Distribution 
+  4. Confusion Matrix
+- Printed evaluation metrics (Optimal k, precision, recall, F1-score).
 
 <div align="center">
 
