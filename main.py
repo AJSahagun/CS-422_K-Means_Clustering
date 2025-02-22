@@ -1,6 +1,6 @@
-from src.preprocessing import load_and_preprocess_data
-from src.kmeans_model import IrisKMeans
-from src.visualization import plot_clustering_analysis, calculate_wcss
+from src.ver_1.preprocessing import load_and_preprocess_data
+from src.custom_kmeans import IrisKMeans
+from src.ver_1.visualization import plot_clustering_analysis, calculate_wcss, find_elbow_point
 import pandas as pd
 
 def main():
@@ -11,8 +11,8 @@ def main():
     # Calculate WCSS values for elbow method
     wcss_values = calculate_wcss(X, IrisKMeans, max_k=9)
 
-    # Train final model with optimal K (3 for Iris dataset)
-    optimal_k = 3
+    # Train final model with optimal K
+    optimal_k = find_elbow_point(wcss_values)
     final_model = IrisKMeans(n_clusters=optimal_k)
     final_model.fit(X)
 
@@ -33,7 +33,8 @@ def main():
     )
 
     # Print metrics
-    print("\nModel Evaluation Metrics:")
+    print("\nModel Evaluation Metrics")
+    print(f"Optimal K: {optimal_k}")
     print(f"Precision: {metrics['precision']:.3f}")
     print(f"Recall: {metrics['recall']:.3f}")
     print(f"F1-Score: {metrics['f1_score']:.3f}")
