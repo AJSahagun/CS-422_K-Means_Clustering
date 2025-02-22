@@ -26,18 +26,28 @@ def load_and_preprocess_data(file_path):
 def create_label_mapping(true_labels, cluster_labels):
     """
     Create mapping between cluster labels (numbers) and true labels (strings)
+    Handles cases where number of clusters differs from number of true labels
     """
     unique_true = np.unique(true_labels)
     unique_cluster = np.unique(cluster_labels)
 
+    # If number of clusters doesn't match number of true labels
+    if len(unique_cluster) != len(unique_true):
+        # Create a mapping that assigns the most common true label for each cluster
+        best_mapping = {}
+        for cluster_label in unique_cluster:
+            mask = cluster_labels == cluster_label
+            true_labels_in_cluster = true_labels[mask]
+            most_common_label = np.unique(true_labels_in_cluster, return_counts=True)
+            best_mapping[cluster_label] = most_common_label[0][np.argmax(most_common_label[1])]
+        return best_mapping
+
+    # Original logic for when number of clusters matches number of true labels
     best_mapping = {}
     best_accuracy = 0
 
-    # Try all possible mappings
     for perm in permutations(unique_true):
-        # Create a mapping from cluster numbers to true labels
         mapping = dict(zip(range(len(unique_true)), perm))
-        # Map cluster labels to true labels for comparison
         mapped_clusters = np.array([mapping[label] for label in cluster_labels])
         acc = accuracy_score(true_labels, mapped_clusters)
 

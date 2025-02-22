@@ -1,5 +1,5 @@
 from src.ver_1.preprocessing import load_and_preprocess_data
-from src.kmeans_model import IrisKMeans
+from src.custom_kmeans import IrisKMeans
 from src.ver_1.visualization import plot_clustering_analysis, calculate_wcss, find_elbow_point
 import pandas as pd
 
@@ -35,6 +35,7 @@ def main():
     # Print metrics
     print("\nModel Evaluation Metrics:")
     print(f"Optimal K: {optimal_k}")
+    print(f"Confusion Matrix: {metrics['confusion_matrix']}")
     print(f"Precision: {metrics['precision']:.3f}")
     print(f"Recall: {metrics['recall']:.3f}")
     print(f"F1-Score: {metrics['f1_score']:.3f}")
