@@ -186,7 +186,9 @@ CS-422_K-Means_Clustering/
 │
 ├── img/
 │   ├── logo.jpg               # Picture logo used in Read me
-│   └── output.png             # Demo picture used in Read me
+│   ├── visualization1.png     # Demo picture for version 1
+│   ├── visualization2.png     # Demo picture for version 2
+│   └── visualization3.png     # Demo picture for version 3
 │
 ├── requirements.txt           # Project dependencies
 ├── README.md                  # Project documentation
