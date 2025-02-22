@@ -9,8 +9,12 @@ class KMeans:
         self.tol = tol
         self.centroids = None
         self.labels_ = None
+        self.X_fit = None  # Store training data for inertia calculation
 
     def fit(self, X):
+        # Store X for inertia calculation
+        self.X_fit = X
+        
         # initialize centroids randomly from the dataset
         np.random.seed(42)
         self.centroids = X[np.random.choice(X.shape[0], self.k, replace=False)]
@@ -43,6 +47,8 @@ class KMeans:
     @property
     def inertia_(self):
         """Calculate Within-Cluster Sum of Squares (WCSS)"""
+        if self.X_fit is None:
+            raise ValueError("Model must be fitted before calculating inertia")
         distances = np.linalg.norm(self.X_fit[:, np.newaxis] - self.centroids, axis=2)
         return np.sum(np.min(distances, axis=1) ** 2)
 
@@ -51,13 +57,13 @@ class IrisKMeans:
     def __init__(self, n_clusters=3, random_state=42):
         self.n_clusters = n_clusters
         self.random_state = random_state
+        np.random.seed(random_state)
         self.model = KMeans(k=n_clusters)
 
     def fit(self, X):
         """
         Fit the K-means model
         """
-        self.model.X_fit = X  # Store X for inertia calculation
         self.model.fit(X)
         return self
 
@@ -81,7 +87,7 @@ class IrisKMeans:
         cluster_labels = self.predict(X)
 
         # Create mapping between cluster labels and true labels
-        from src.preprocessing import create_label_mapping
+        from src.ver_1.preprocessing import create_label_mapping
         mapping = create_label_mapping(true_labels, cluster_labels)
 
         # Map cluster labels (numbers) to predicted labels
