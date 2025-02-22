@@ -11,7 +11,7 @@ def main():
     # Calculate WCSS values for elbow method
     wcss_values = calculate_wcss(X, IrisKMeans, max_k=9)
 
-    # Train final model with optimal K (3 for Iris dataset)
+    # Train final model with optimal K
     optimal_k = find_elbow_point(wcss_values)
     final_model = IrisKMeans(n_clusters=optimal_k)
     final_model.fit(X)

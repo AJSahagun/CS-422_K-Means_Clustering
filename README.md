@@ -98,7 +98,8 @@ This project demonstrates K-means clustering on the Iris dataset using petal len
 * It's recommended to use GIFs as they are more dynamic
 -->
 
-<img src="./img/output.png" alt="output" height="290">
+### Version 1 - Features: Petal Length & Width (2D)
+<img src="./img/visualization1.png" alt="Visualization for version 1" height="290">
 
 ### Output
 
@@ -158,6 +159,7 @@ This project demonstrates K-means clustering on the Iris dataset using petal len
 - [x] Start ML Model development
 - [x] Evaluate the Model's accuracy
 - [x] Implement visualization
+- [x] Implement Revisions
 
 
 <p align="right"><a href="#how-to-use-this-project">back to top ⬆️</a></p>
@@ -173,13 +175,22 @@ This project demonstrates K-means clustering on the Iris dataset using petal len
 CS-422_K-Means_Clustering/
 │
 ├── data/
+│   ├── Iris-Original.csv
 │   └── ml_group-4_iris_dataset.csv
 │
 ├── src/
+│   ├── ver_1/                 # Features: Petal Length & Width (2D)
+│   │   ├── preprocessing.py
+│   │   └── visualization.py
+│   ├── ver_2/                 # Features: Sepal Length & Width (2D)
+│   │   ├── preprocessing.py
+│   │   └── visualization.py
+│   ├── ver_3/                 # Features: Petal Length & Width, Sepal Width (3D)
+│   │   ├── preprocessing.py
+│   │   └── visualization.py
 │   ├── custom_kmeans.py       # KMeans model implementation
-│   ├── preprocessing.py       # Data preprocessing utilities
-│   ├── kmeans_model.py        # KMeans model from Sci-kit
-│   └── visualization.py       # Visualization utilities
+│   └── kmeans_model.py        # KMeans model from Sci-kit
+│   
 │
 ├── notebook/
 │   └── kmeans.ipynb           # Jupyter notebook for the model
