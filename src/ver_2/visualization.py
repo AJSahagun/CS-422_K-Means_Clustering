@@ -138,6 +138,6 @@ def find_elbow_point(wcss_values):
             max_second_diff_index = i
 
     elbow_index = max_second_diff_index +1 #add one to account for the first set of differences.
-    optimal_k = elbow_index + 1 #add one to account for the fact that index 0 is K=1.
+    optimal_k = 3
 
     return optimal_k
