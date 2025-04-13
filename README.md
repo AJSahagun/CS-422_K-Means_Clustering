@@ -121,10 +121,10 @@ F1-Score: 0.559
 
 ```commandline
 Model Evaluation Metrics
-Optimal K: 3
-Precision: 0.748
-Recall: 0.750
-F1-Score: 0.748
+Optimal K: 2
+Precision: 0.503
+Recall: 0.670
+F1-Score: 0.559
 ```
 
 ### Version 3 - Features: Petal Length & Width, Sepal Width (3D)

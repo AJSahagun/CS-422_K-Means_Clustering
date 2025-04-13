@@ -1,6 +1,6 @@
-from src.ver_2.preprocessing import load_and_preprocess_data
+from src.ver_1.preprocessing import load_and_preprocess_data
 from src.custom_kmeans import IrisKMeans
-from src.ver_2.visualization import plot_clustering_analysis, calculate_wcss, find_elbow_point
+from src.ver_1.visualization import plot_clustering_analysis, calculate_wcss, find_elbow_point
 import pandas as pd
 
 def main():
