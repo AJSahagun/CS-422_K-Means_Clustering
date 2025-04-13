@@ -11,27 +11,44 @@ class KMeans:
         self.labels_ = None
         self.X_fit = None  # Store training data for inertia calculation
 
+        # New attributes to track evolution
+        self.centroid_history = []
+        self.labels_history = []
+        self.iterations = 0
+
     def fit(self, X):
         # Store X for inertia calculation
         self.X_fit = X
-        
+
         # initialize centroids randomly from the dataset
         np.random.seed(42)
         self.centroids = X[np.random.choice(X.shape[0], self.k, replace=False)]
 
-        for _ in range(self.max_iters):
+        # Store initial centroids
+        self.centroid_history.append(self.centroids.copy())
+
+        for i in range(self.max_iters):
             # assign clusters based on closest centroid
             distances = np.linalg.norm(X[:, np.newaxis] - self.centroids, axis=2)
             labels = np.argmin(distances, axis=1)
 
+            # Store current labels
+            self.labels_history.append(labels.copy())
+
             # compute new centroids
-            new_centroids = np.array([X[labels == i].mean(axis=0) for i in range(self.k)])
+            new_centroids = np.array([X[labels == j].mean(axis=0) if np.sum(labels == j) > 0
+                                      else self.centroids[j] for j in range(self.k)])
+
+            # Track iteration count
+            self.iterations = i + 1
 
             # check for convergence
             if np.linalg.norm(self.centroids - new_centroids) < self.tol:
                 break
 
             self.centroids = new_centroids
+            # Store current centroids
+            self.centroid_history.append(self.centroids.copy())
 
         self.labels_ = labels
         return self
@@ -78,6 +95,16 @@ class IrisKMeans:
         Get within-cluster sum of squares
         """
         return self.model.inertia_
+
+    def get_iteration_history(self):
+        """
+        Get the history of centroids and labels for each iteration
+        """
+        return {
+            'centroid_history': self.model.centroid_history,
+            'labels_history': self.model.labels_history,
+            'iterations': self.model.iterations
+        }
 
     def evaluate(self, X, true_labels):
         """
