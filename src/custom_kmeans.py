@@ -20,7 +20,7 @@ class KMeans:
         # Store X for inertia calculation
         self.X_fit = X
 
-        # initialize centroids randomly from the dataset
+        # Initialize centroids randomly from the dataset
         np.random.seed(42)
         self.centroids = X[np.random.choice(X.shape[0], self.k, replace=False)]
 
@@ -28,21 +28,21 @@ class KMeans:
         self.centroid_history.append(self.centroids.copy())
 
         for i in range(self.max_iters):
-            # assign clusters based on closest centroid
+            # Assign clusters based on closest centroid
             distances = np.linalg.norm(X[:, np.newaxis] - self.centroids, axis=2)
             labels = np.argmin(distances, axis=1)
 
             # Store current labels
             self.labels_history.append(labels.copy())
 
-            # compute new centroids
+            # Compute new centroids
             new_centroids = np.array([X[labels == j].mean(axis=0) if np.sum(labels == j) > 0
                                       else self.centroids[j] for j in range(self.k)])
 
             # Track iteration count
             self.iterations = i + 1
 
-            # check for convergence
+            # Check for convergence
             if np.linalg.norm(self.centroids - new_centroids) < self.tol:
                 break
 
@@ -108,13 +108,13 @@ class IrisKMeans:
 
     def evaluate(self, X, true_labels):
         """
-        Evaluate the clustering model
+        Evaluate the clustering model - maps clusters to country names
         """
         # Get cluster predictions
         cluster_labels = self.predict(X)
 
-        # Create mapping between cluster labels and true labels
-        from src.ver_1.preprocessing import create_label_mapping
+        # Create mapping between cluster labels and true labels (countries)
+        from src.ver_3.preprocessing import create_label_mapping  # Updated import path
         mapping = create_label_mapping(true_labels, cluster_labels)
 
         # Map cluster labels (numbers) to predicted labels
