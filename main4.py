@@ -1,5 +1,5 @@
 from src.ver_4.preprocessing import load_and_preprocess_data
-from src.custom_kmeans import IrisKMeans
+from src.custom_kmeans import SeedKMeans
 from src.ver_4.visualization import (
     plot_clustering_analysis, calculate_wcss, find_elbow_point,
     plot_kmeans_iterations, create_kmeans_animation
@@ -14,11 +14,11 @@ def main():
     df = pd.read_csv('data/Seed_Data.csv')
 
     # Calculate WCSS values for elbow method
-    wcss_values = calculate_wcss(X, IrisKMeans, max_k=9)
+    wcss_values = calculate_wcss(X, SeedKMeans, max_k=9)
 
     # Train final model with optimal K
     optimal_k = find_elbow_point(wcss_values)
-    final_model = IrisKMeans(n_clusters=optimal_k)
+    final_model = SeedKMeans(n_clusters=optimal_k)
     final_model.fit(X)
 
     # Get predictions and evaluation metrics

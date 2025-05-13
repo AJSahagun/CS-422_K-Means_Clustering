@@ -70,7 +70,7 @@ class KMeans:
         return np.sum(np.min(distances, axis=1) ** 2)
 
 
-class IrisKMeans:
+class SeedKMeans:
     def __init__(self, n_clusters=3, random_state=42):
         self.n_clusters = n_clusters
         self.random_state = random_state
