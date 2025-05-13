@@ -41,7 +41,7 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
         cluster_centers = scaler.inverse_transform(cluster_centers)
 
     # 3D scatter for all points colored by cluster labels - updated to Quantity, UnitPrice, CustomerID
-    ax2.scatter(df['Quantity'], df['UnitPrice'], df['CustomerID'],
+    ax2.scatter(df['A'], df['A_Coef'], df['LKG'],
                 c=cluster_labels, cmap='viridis', s=100, alpha=0.6)
 
     # Plot cluster centers
@@ -49,9 +49,9 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
                 s=300, c='red', marker='X', linewidth=2, label='Centroids')
 
     ax2.set_title('K-means Clustering Results', fontsize=14, pad=15)
-    ax2.set_xlabel('Quantity', fontsize=12)  # Updated label
-    ax2.set_ylabel('UnitPrice', fontsize=12)  # Updated label
-    ax2.set_zlabel('CustomerID', fontsize=12)  # Updated label
+    ax2.set_xlabel('A', fontsize=12)  # Updated label
+    ax2.set_ylabel('A_Coef', fontsize=12)  # Updated label
+    ax2.set_zlabel('LKG', fontsize=12)  # Updated label
     ax2.legend(fontsize=10)
 
     # 3. True Labels Visualization (3D) - updated features and country labels
@@ -61,15 +61,15 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
 
     for country, color in zip(unique_countries, colors):
         mask = true_labels == country
-        ax3.scatter(df.loc[mask, 'Quantity'],
-                    df.loc[mask, 'UnitPrice'],
-                    df.loc[mask, 'CustomerID'],
+        ax3.scatter(df.loc[mask, 'A'],
+                    df.loc[mask, 'A_Coef'],
+                    df.loc[mask, 'LKG'],
                     label=country, color=color, s=100, alpha=0.6)
 
-    ax3.set_title('Actual Country Distribution', fontsize=14, pad=15)  # Updated title
-    ax3.set_xlabel('Quantity', fontsize=12)  # Updated label
-    ax3.set_ylabel('UnitPrice', fontsize=12)  # Updated label
-    ax3.set_zlabel('CustomerID', fontsize=12)  # Updated label
+    ax3.set_title('Actual Seed Distribution', fontsize=14, pad=15)  # Updated title
+    ax3.set_xlabel('A', fontsize=12)  # Updated label
+    ax3.set_ylabel('A_Coef', fontsize=12)  # Updated label
+    ax3.set_zlabel('LKG', fontsize=12)  # Updated label
     ax3.legend(fontsize=10)
 
     # 4. Confusion Matrix (2D) - updated to use countries
@@ -77,8 +77,8 @@ def plot_clustering_analysis(X_scaled, df, cluster_labels, true_labels, cluster_
     sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',
                 xticklabels=unique_countries, yticklabels=unique_countries, ax=ax4)
     ax4.set_title('Confusion Matrix', fontsize=14, pad=15)
-    ax4.set_xlabel('Predicted Country', fontsize=12)  # Updated label
-    ax4.set_ylabel('True Country', fontsize=12)  # Updated label
+    ax4.set_xlabel('Predicted Label', fontsize=12)  # Updated label
+    ax4.set_ylabel('True Label', fontsize=12)  # Updated label
 
     plt.tight_layout(h_pad=0.5, w_pad=0.5)
     plt.show()
@@ -135,7 +135,7 @@ def find_elbow_point(wcss_values):
             max_second_diff_index = i
 
     elbow_index = max_second_diff_index + 1
-    optimal_k = elbow_index + 1
+    optimal_k = elbow_index + 2
 
     return optimal_k
 
@@ -163,9 +163,9 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
             for cluster_idx in range(num_clusters):
                 mask = labels_history[i] == cluster_idx
                 ax.scatter(
-                    df.loc[mask, 'Quantity'],
-                    df.loc[mask, 'UnitPrice'],
-                    df.loc[mask, 'CustomerID'],
+                    df.loc[mask, 'A'],
+                    df.loc[mask, 'A_Coef'],
+                    df.loc[mask, 'LKG'],
                     color=cluster_colors[cluster_idx],
                     s=80,
                     alpha=0.6,
@@ -186,9 +186,9 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
                 )
 
         ax.set_title(f'Iteration {i + 1}', fontsize=12)
-        ax.set_xlabel('Quantity', fontsize=10)  # Updated label
-        ax.set_ylabel('UnitPrice', fontsize=10)  # Updated label
-        ax.set_zlabel('CustomerID', fontsize=10)  # Updated label
+        ax.set_xlabel('A', fontsize=10)  # Updated label
+        ax.set_ylabel('A_Coef', fontsize=10)  # Updated label
+        ax.set_zlabel('LKG', fontsize=10)  # Updated label
         if i == 0:
             ax.legend(fontsize=8, loc='upper right')
 
@@ -199,9 +199,9 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
             for cluster_idx in range(num_clusters):
                 mask = labels_history[-1] == cluster_idx
                 ax.scatter(
-                    df.loc[mask, 'Quantity'],
-                    df.loc[mask, 'UnitPrice'],
-                    df.loc[mask, 'CustomerID'],
+                    df.loc[mask, 'A'],
+                    df.loc[mask, 'A_Coef'],
+                    df.loc[mask, 'LKG'],
                     color=cluster_colors[cluster_idx],
                     s=80,
                     alpha=0.6,
@@ -222,9 +222,9 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
                 )
 
         ax.set_title(f'Iteration {iterations+1} (Final)', fontsize=12)
-        ax.set_xlabel('Quantity', fontsize=10)  # Updated label
-        ax.set_ylabel('UnitPrice', fontsize=10)  # Updated label
-        ax.set_zlabel('CustomerID', fontsize=10)  # Updated label
+        ax.set_xlabel('A', fontsize=10)  # Updated label
+        ax.set_ylabel('A_Coef', fontsize=10)  # Updated label
+        ax.set_zlabel('LKG', fontsize=10)  # Updated label
         ax.legend(fontsize=8, loc='upper right')
 
     plt.tight_layout()
@@ -243,13 +243,13 @@ def create_kmeans_animation(X_scaled, df, centroid_history, labels_history, scal
     ax = fig.add_subplot(111, projection='3d')
 
     # Setup plot limits - updated features
-    ax.set_xlim([df['Quantity'].min() - 0.5, df['Quantity'].max() + 0.5])
-    ax.set_ylim([df['UnitPrice'].min() - 0.5, df['UnitPrice'].max() + 0.5])
-    ax.set_zlim([df['CustomerID'].min() - 0.5, df['CustomerID'].max() + 0.5])
+    ax.set_xlim([df['A'].min() - 0.5, df['A'].max() + 0.5])
+    ax.set_ylim([df['A_Coef'].min() - 0.5, df['A_Coef'].max() + 0.5])
+    ax.set_zlim([df['LKG'].min() - 0.5, df['LKG'].max() + 0.5])
 
-    ax.set_xlabel('Quantity')  # Updated label
-    ax.set_ylabel('UnitPrice')  # Updated label
-    ax.set_zlabel('CustomerID')  # Updated label
+    ax.set_xlabel('A')  # Updated label
+    ax.set_ylabel('A_Coef')  # Updated label
+    ax.set_zlabel('LKG')  # Updated label
 
     num_clusters = centroid_history[0].shape[0]
     cluster_colors = plt.cm.viridis(np.linspace(0, 1, num_clusters))
@@ -258,9 +258,9 @@ def create_kmeans_animation(X_scaled, df, centroid_history, labels_history, scal
     for cluster_idx in range(num_clusters):
         mask = labels_history[0] == cluster_idx
         scatter = ax.scatter(
-            df.loc[mask, 'Quantity'],
-            df.loc[mask, 'UnitPrice'],
-            df.loc[mask, 'CustomerID'],
+            df.loc[mask, 'A'],
+            df.loc[mask, 'A_Coef'],
+            df.loc[mask, 'LKG'],
             color=cluster_colors[cluster_idx],
             s=80,
             alpha=0.6,
@@ -291,9 +291,9 @@ def create_kmeans_animation(X_scaled, df, centroid_history, labels_history, scal
             mask = labels_history[frame] == cluster_idx
             if np.any(mask):
                 scatter_plots[cluster_idx]._offsets3d = (
-                    df.loc[mask, 'Quantity'],
-                    df.loc[mask, 'UnitPrice'],
-                    df.loc[mask, 'CustomerID']
+                    df.loc[mask, 'A'],
+                    df.loc[mask, 'A_Coef'],
+                    df.loc[mask, 'LKG']
                 )
             else:
                 scatter_plots[cluster_idx]._offsets3d = ([], [], [])

@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 def main():
     # Load and preprocess data - updated to new dataset path
-    X, y, scaler = load_and_preprocess_data('data/E-Commerce_data-Filtered.csv')
-    df = pd.read_csv('data/E-Commerce_data-Filtered.csv')
+    X, y, scaler = load_and_preprocess_data('data/Seed_Data.csv')
+    df = pd.read_csv('data/Seed_Data.csv')
 
     # Calculate WCSS values for elbow method
     wcss_values = calculate_wcss(X, IrisKMeans, max_k=9)

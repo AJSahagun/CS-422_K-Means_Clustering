@@ -13,8 +13,8 @@ def load_and_preprocess_data(file_path):
     df = pd.read_csv(file_path, encoding="latin1")
 
     # Extract features and target
-    X = df[['Quantity', 'UnitPrice', 'CustomerID']].values
-    y = df['Country'].values
+    X = df[['A', 'A_Coef', 'LKG']].values
+    y = df['target'].values
 
     # Scale the features
     scaler = StandardScaler()
