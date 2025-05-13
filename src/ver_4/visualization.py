@@ -145,7 +145,7 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
     """
     n_iterations = min(iterations + 1, 9)
     rows = (n_iterations + 2) // 3
-    fig = plt.figure(figsize=(10, 8 * rows))
+    fig = plt.figure(figsize=(4, 2 * rows))
     fig.tight_layout()
 
     if scaler is not None:
@@ -185,10 +185,10 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
                     linewidth=2
                 )
 
-        ax.set_title(f'Iteration {i + 1}', fontsize=12)
-        ax.set_xlabel('A', fontsize=10)  # Updated label
-        ax.set_ylabel('A_Coef', fontsize=10)  # Updated label
-        ax.set_zlabel('LKG', fontsize=10)  # Updated label
+        ax.set_title(f'Iteration {i + 1}', fontsize=10)
+        ax.set_xlabel('A', fontsize=8)  # Updated label
+        ax.set_ylabel('A_Coef', fontsize=8)  # Updated label
+        ax.set_zlabel('LKG', fontsize=8)  # Updated label
         if i == 0:
             ax.legend(fontsize=8, loc='upper right')
 
@@ -221,10 +221,10 @@ def plot_kmeans_iterations(X_scaled, df, centroid_history, labels_history, itera
                     linewidth=2
                 )
 
-        ax.set_title(f'Iteration {iterations+1} (Final)', fontsize=12)
-        ax.set_xlabel('A', fontsize=10)  # Updated label
-        ax.set_ylabel('A_Coef', fontsize=10)  # Updated label
-        ax.set_zlabel('LKG', fontsize=10)  # Updated label
+        ax.set_title(f'Iteration {iterations+1} (Final)', fontsize=10)
+        ax.set_xlabel('A', fontsize=8)  # Updated label
+        ax.set_ylabel('A_Coef', fontsize=8)  # Updated label
+        ax.set_zlabel('LKG', fontsize=8)  # Updated label
         ax.legend(fontsize=8, loc='upper right')
 
     plt.tight_layout()
